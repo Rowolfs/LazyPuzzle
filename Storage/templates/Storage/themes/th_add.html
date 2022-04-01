@@ -1,0 +1,14 @@
+{% extends 'Storage/base.html' %}
+
+{% block content %}
+    <h1>Словесные загадки</h1>
+    <hr>
+    <form action="{% url 'vr_add' %}" method="post">
+        {% csrf_token %}
+        {% for f in form %}
+            <p><label for="{{ f.id_for_label }}">{{f.label}}:</label>{{f}}</p>
+            <div>{{ f.errors }}</div>
+        {% endfor %}
+        <button type="submit">Add</button>
+    </form>
+{% endblock %}

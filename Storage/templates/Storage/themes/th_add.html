@@ -1,9 +1,9 @@
 {% extends 'Storage/base.html' %}
 
 {% block content %}
-    <h1>Словесные загадки</h1>
+    <h1>Темы</h1>
     <hr>
-    <form action="{% url 'vr_add' %}" method="post">
+    <form action="{% url 'th_add' %}" method="post">
         {% csrf_token %}
         {% for f in form %}
             <p><label for="{{ f.id_for_label }}">{{f.label}}:</label>{{f}}</p>

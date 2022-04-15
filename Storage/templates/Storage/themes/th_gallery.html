@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'Storage/base.html' %}
 
-</body>
-</html>
+{% block content %}
+<ul>
+    {% for th in themes %}
+    <li>
+        <p>{{th.theme|linebreaks}}</p>
+        <hr>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

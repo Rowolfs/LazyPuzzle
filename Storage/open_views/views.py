@@ -12,3 +12,4 @@ def main_page(requset):
     context['title'] = "О нас"
 
     return render(requset, 'Storage/main.html')
+

@@ -41,7 +41,7 @@ class Show_VerbalRiddles(DataMixin, DetailView):
 class Add_VerbalRiddles(DataMixin, CreateView):
     form_class = AddVerbalRiddles_post
     template_name = 'Storage/verbal_riddles/vr_add.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('vr_add')
     raise_exception = True
 
     def get_context_data(self,*, object_list=None, **kwargs):

@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class BasicSettings(models.Model):
     class Meta():
         abstract = True
@@ -8,6 +9,7 @@ class BasicSettings(models.Model):
         auto_now=False, verbose_name="Дата появления", auto_now_add=True)
     is_published = models.BooleanField(
         default=True, verbose_name="Публичность")
+
 
 class Puzzle(BasicSettings):
     class Meta():
@@ -24,12 +26,19 @@ class Puzzle(BasicSettings):
         max_length=15,blank=True, verbose_name="Сложность",
         default="Normal")
 
+    def __str__(self):
+        return self.title
+
 class Themes(models.Model):
     class Meta():
         db_table = "db_bP_themes"
     theme = models.CharField(
         max_length=15, blank=True, verbose_name="Тема",
         default="Random")
+
+    def __str__(self):
+        return self.theme
+
 
 class VerbalRiddles(BasicSettings):
     class Meta():
@@ -43,6 +52,10 @@ class VerbalRiddles(BasicSettings):
         max_length = 20,blank=True, verbose_name="Ответ")
     themes = models.ManyToManyField(Themes)
 
+    def __str__(self):
+        return self.question
+
+
 class Crossword(Puzzle):
     class Meta():
         db_table = "db_bP_crossword"
@@ -50,3 +63,5 @@ class Crossword(Puzzle):
         verbose_name_plural = "кроссворды"
     riddles = models.ManyToManyField(VerbalRiddles)
     themes = models.ManyToManyField(Themes)
+    def __str__(self):
+        return self.title

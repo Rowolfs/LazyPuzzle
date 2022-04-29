@@ -49,6 +49,15 @@ class Add_VerbalRiddles(DataMixin, CreateView):
         c_def = self.get_user_context(title="Создание")
         return dict(list(context.items()) + list(c_def.items()))
 
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+
+        for theme in form.cleaned_data['themes']:
+            themes = ThemesToVerbalRiddles()
+            themes.group = self.object
+            themes.person = theme
+            themes.save()
+        return super(Add_VerbalRiddles, self).form_valid(form)
 
 def main_page(requset):
     context = {}

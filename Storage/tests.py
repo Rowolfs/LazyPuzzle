@@ -12,3 +12,6 @@ class IndexTest(TestCase):
 
     def main_contest(self):
         self.assertEqual(self.response.context[])
+
+class CrosswordTestCase(TestCase):
+

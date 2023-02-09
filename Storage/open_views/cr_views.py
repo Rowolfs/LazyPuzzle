@@ -3,12 +3,9 @@ from typing import List, Any
 
 """
     defines crosswords classes
-
     classes:
     CrossWord - base crossword class store field, answers
     CrossAnswer - class store word coordinates and direction
-
-
 """
 
 
@@ -17,19 +14,14 @@ class CrossAnswer:
     A class used to represent a word in crossword
     this class only use in Crossword
     please dont use this anyone
-
     fields:
         word - str
         direction - bool
         x - int
         y - int
-
     methods:
         calc_cor - calculate coordinate in crossword
         recalc_cor - calculate coordinate in optimize crossword
-
-
-
     """
 
     def __init__(self, word, cross_x, cross_y, direction, letter='0'):
@@ -70,7 +62,6 @@ class Crossword:
             using_answers - list of classes object (CrossAnswer) in crossword
             using_crossing - list of unique number crossing in crossword
             resolution - fields length,height (dict)
-
         methods:
             gen_field - generate non optimize field
             find_cross - search crossing with word on the field
@@ -78,9 +69,6 @@ class Crossword:
             check_proximity - check word collision
             streamline_field - optimizing field
             print_crossword - print crossword in console (can call)
-
-
-
     """
 
     def __init__(self, QUESTIONS_TO_ANSWERS):
@@ -123,7 +111,7 @@ class Crossword:
         generate new not optimize field
         :return:
             field - matrix
-            length - int (field is square) 
+            length - int (field is square)
         """
         length = len(self.answers[0]) ** 2
         field = []
@@ -134,7 +122,6 @@ class Crossword:
     def find_cross(self):
         """
         search crossing with word on the field
-
         :return:
             word - str
             cross_x - int
@@ -181,7 +168,7 @@ class Crossword:
         :param word: str
         :param cross_x: int
         :param cross_y: int
-        :return: direction - bool can be None  
+        :return: direction - bool can be None
         """
         offset = word.index(self.field[cross_y][cross_x])
         _x = cross_x - offset
@@ -202,7 +189,7 @@ class Crossword:
     def streamline_field(self):
         """
         optimizing field
-        :return: 
+        :return:
                 _x - begin x of optimize field int
                 _y - begin x of optimize field int
         """
@@ -229,3 +216,19 @@ class Crossword:
     def print_crossword(self):
         for row in self.field:
             print(*row)
+
+
+def main():
+    q_a = {
+        "a": "привет",
+        "b": "банан",
+        "c": "школа",
+        "g": "грибочек",
+        "f": "боль"
+    }
+    a = Crossword(q_a)
+    a.print_crossword()
+
+
+if __name__ == '__main__':
+    main()
